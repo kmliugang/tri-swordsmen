@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css权重及引入方式</title>
+    <style>
+        /* 基本样式 */
+        .base-style {
+            background: salmon;
+            width: 200px;
+            height: 100px;
+            border-radius: 16px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+
+        /* #title{
+            background: pink;
+        } */
+
+        /* div[data-v-123456] {
+            background: forestgreen;
+        } */
+        [data-v-123456] {
+            background: forestgreen;
+        }
+
+        /* 
+         [attribute='customAttribute'] 等同于 *[attribute='customAttribute']
+         属性选择器与其他选择器搭配使用
+         属性选择器 权重 和类选择器一样
+         */
+
+
+        /* [attribute='customAttribute'] {
+            background: tomato;
+        }
+
+        .title {
+            background: gold;
+        }
+
+        [attribute='customAttribute'] {
+            background: tomato;
+        } */
+
+
+        /* .title:hover{
+            background: #ea6383;
+        } */
+        /* div:nth-child(1) {
+            background: purple;
+        } */
+
+        .title {
+            background: gold;
+        }
+
+        * .list-item+li {
+            color: salmon;
+
+        }
+
+        .list-item~li {
+            color: blueviolet;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table td,
+        th {
+            padding: 10px;
+        }
+
+        /* .root-top  :nth-child(2)
+        用于比较伪类和类的权重
+         */
+
+        /*  .root-top {
+            background: darkcyan;
+        }
+
+        :nth-child(2) {
+            background: orange;
+        } */
+      
+    </style>
+</head>
+
+<body class="root-top">
+    <header>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>选择器</th>
+                    <th>权重</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>!important</td>
+                    <td>∞</td>
+                </tr>
+                <tr>
+                    <td>行内样式</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>id选择器</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>类选择器、属性、伪类</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>标签、伪元素</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>通配符 * </td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </header>
+    <!-- 同类选择器之间，无权重可言，只有作用的先后顺序有关（就近原则，近body原则；或者从上往下执行，后面覆盖前面） -->
+    <!-- 
+        伪类：
+            参照点：相对于父级，并且无限套娃
+            CSS 伪类 是添加到选择器的关键字，指定要选择的元素的特殊状态。
+            一般和其他选择器搭配使用
+            使用方式：一般是组合使用
+
+        关系选择器：
+        空格表示后代，> 子代选择器，+ 兄弟选择器(只选择邻近的一个兄弟)，~ 所有兄弟选择器
+     -->
+
+
+
+    <div class="base-style title" id="title" attribute="customAttribute" data-v-123456>css权重及引入方式</div>
+    <section>
+        <ul class="list">
+            <li class="list-item">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+    </section>
+    <!-- 
+        特别说明：关系型选择器，不纳入权重考虑
+        因为关系型选择器不能单独使用，必须组合使用，就是关系型左侧必须要有选择器
+     -->
+
+
+</body>
+
+</html>
